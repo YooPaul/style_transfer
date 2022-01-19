@@ -18,7 +18,7 @@
 </tbody></table>
 
 ## Dataset
-MS-COCO dataset was used to train the model. In addition to the COCO dataset, pick a style target image you would like
+MS-COCO dataset [2] was used to train the model. In addition to the COCO dataset, pick a style target image you would like
 to transfer the style from.
 
 The dataset can be downloaded by running the following commands
@@ -40,5 +40,5 @@ Output will be saved in the current directory by default.
 
 [1] Johnson, Justin, Alexandre Alahi, and Li Fei-Fei. "Perceptual losses for real-time style transfer and super-resolution." In European conference on computer vision, pp. 694-711. Springer, Cham, 2016.
 
-
+[2] Lin, Tsung-Yi, Michael Maire, Serge Belongie, James Hays, Pietro Perona, Deva Ramanan, Piotr Dollár, and C. Lawrence Zitnick. "Microsoft coco: Common objects in context." In European conference on computer vision, pp. 740-755. Springer, Cham, 2014.
 
