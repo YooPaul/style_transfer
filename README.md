@@ -1,7 +1,8 @@
 # PyTorch Implementation of Perceptual Loss for Image Style Transfer
-<!---
-[![Open NeRF in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YooPaul/NeRF/blob/master/NeRF.ipynb)<br>
--->
+
+Open code in Colab!<br>
+[![Open style_transfer in
+Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YooPaul/style_transfer/blob/master/style_transfer.ipynb)<br>
 
 <table><tbody>
 <!-- START TABLE -->
