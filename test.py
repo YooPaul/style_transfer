@@ -1,9 +1,10 @@
-from models import *
+import torch
 from torchvision import transforms
-import numpy as np
 from PIL import Image
 import argparse
 import os
+
+from models import StyleTransfer
 
 parser = argparse.ArgumentParser(description='Image style transfer.')
 parser.add_argument('model', type=str,

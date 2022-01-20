@@ -1,10 +1,11 @@
-import numpy as np
+import torch
+from torchvision import transforms
 from PIL import Image
 import os
 
-from models import *
-from perceptual_loss import *
-from data import *
+from models import StyleTransfer
+from perceptual_loss import PerceptualLoss
+from data import CocoDetection
 
 EPOCHS = 2
 lr = 1e-3
