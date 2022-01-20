@@ -29,8 +29,13 @@ class StyleTransfer(nn.Module):
 
         self.padding = nn.ReflectionPad2d(40)
 
-        conv_package = lambda in_c, out_c, kernel, s : [nn.Conv2d(in_c, out_c, kernel, s, (kernel - 1) // 2), nn.BatchNorm2d(out_c), nn.ReLU(True)]
-        deconv_package = lambda in_c, out_c, kernel, s : [nn.ConvTranspose2d(in_c, out_c, kernel, s, padding=1, output_padding=1), nn.BatchNorm2d(out_c), nn.ReLU(True)]
+        conv_package = lambda in_c, out_c, kernel, s : [nn.Conv2d(in_c, out_c, kernel, s, (kernel - 1) // 2), 
+                                                        nn.BatchNorm2d(out_c),
+                                                        nn.ReLU(True)]
+
+        deconv_package = lambda in_c, out_c, kernel, s : [nn.ConvTranspose2d(in_c, out_c, kernel, s, padding=1, output_padding=1),
+                                                          nn.BatchNorm2d(out_c),
+                                                          nn.ReLU(True)]
         
         
         self.conv_block = nn.Sequential(  *(conv_package(3, 32, 9, 1) + conv_package(32, 64, 3, 2) + conv_package(64, 128, 3, 2)) )
@@ -48,4 +53,4 @@ class StyleTransfer(nn.Module):
         x = self.res_blocks(x)
         x = self.deconv_block(x)
         out = self.output_layer(x)
-        return (torch.tanh(out) + 1) / 2 # normalize output to [0, 1]
+        return (torch.tanh(out) + 1) / 2 # shift output to [0, 1]
