@@ -43,6 +43,8 @@ class PerceptualLoss():
         return F.mse_loss(feature_map_x1, feature_map_x2) # mse_loss already normalizes / (C*H*W)
 
     def  style_reconstruction_loss(self, x1, x2):
+        # if x1 and x2 don't have the same spatial dimensions,
+        # need to run them through vgg separately
         x = torch.concat((x1, x2), dim=0)
         self.vgg16(x)
         N = x1.shape[0]
@@ -60,6 +62,7 @@ class PerceptualLoss():
             gram_mat_x2 = feature_map_x2 @ torch.transpose(feature_map_x2, -1, -2) / (C*H*W)
             
             #loss += torch.square(torch.norm(gram_mat_x1 - gram_mat_x2, p='fro',dim=(1,2))).mean() #F.mse_loss(feature_map_x1, feature_map_x2)
-            loss += torch.square(torch.linalg.matrix_norm(gram_mat_x1 - gram_mat_x2)).mean() # Frobenius norm
+            #loss += torch.square(torch.linalg.matrix_norm(gram_mat_x1 - gram_mat_x2)).mean() # Frobenius norm
+            loss += F.mse_loss(gram_mat_x1, gram_mat_x2, reduction='sum') # same thing as above 
         return loss
 
